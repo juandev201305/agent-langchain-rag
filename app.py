@@ -4,7 +4,7 @@ import tempfile
 from config import GENERATION_MODEL
 from vector_store import splitter_docs, build_vector_store, load_vector_store, reset_chroma, load_document, get_indexed_files, delete_document
 from rag_system import initialize_retriever
-from pipeline import rag_chain
+from pipeline import rag_chain, generator_chain
 
 
 # =========================
@@ -26,6 +26,19 @@ if "vector_ready" not in st.session_state:
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
+
+
+# =========================
+# SIDEBAR: ELECCIÓN MODO
+# =========================
+
+mode = st.sidebar.radio(
+    "Modo",
+    [
+        "Chat",
+        "Generator_docx"
+    ]
+) 
 
 
 # =========================
@@ -80,35 +93,76 @@ selected_model = GENERATION_MODEL[selected_model_label]
 
 st.sidebar.info(f"Modelo seleccionado:\n{selected_model}")
 
+
+# =========================
+# GENERADOR DOCX
+# =========================
+
+if mode == "Generator_docx":
+    st.header("📄 Generador DOCX")
+
+    prompt_doc = st.text_area(
+        "Describe el documento que quieres generar",
+        height=200,
+        placeholder="""
+Ejemplo:
+Haz un informe técnico sobre IA generativa,
+con introducción, desarrollo, ventajas,
+desventajas y conclusión.
+"""
+    )
+
+    if st.button("Generar documento"):
+        if not prompt_doc.strip():
+            st.warning("Debes escribir un prompt")
+        else:
+            with st.spinner("Generando documento..."):
+                # Generar docx
+                docx_file = generator_chain(prompt_doc, selected_model)
+
+            st.success(
+            "Documento generado"
+            )
+
+            st.download_button(
+                label="⬇ Descargar DOCX",
+                data=docx_file,
+                file_name="documento.docx",
+                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            )
+
+
 # =========================
 # MAIN: CHAT
 # =========================
-st.header("💬 Chat")
 
-# Mostrar historial
-for role, message in st.session_state.chat_history:
-    with st.chat_message(role):
-        st.write(message)
+if mode=="Chat":
+    st.header("💬 Chat")
+
+    # Mostrar historial
+    for role, message in st.session_state.chat_history:
+        with st.chat_message(role):
+            st.write(message)
 
 
-# Input del usuario
-query = st.chat_input("Haz una pregunta sobre el documento...")
+    # Input del usuario
+    query = st.chat_input("Haz una pregunta sobre el documento...")
 
-if query:
-    # Mostrar pregunta
-    st.session_state.chat_history.append(("user", query))
-    with st.chat_message("user"):
-        st.write(query)
+    if query:
+        # Mostrar pregunta
+        st.session_state.chat_history.append(("user", query))
+        with st.chat_message("user"):
+            st.write(query)
 
-    # Obtener respuesta
-    with st.spinner("Pensando..."):
-        retriever = initialize_retriever()
-        response = rag_chain(query, retriever, selected_model)
+        # Obtener respuesta
+        with st.spinner("Pensando..."):
+            retriever = initialize_retriever()
+            response = rag_chain(query, retriever, selected_model)
 
-    # Mostrar respuesta
-    st.session_state.chat_history.append(("assistant", response))
-    with st.chat_message("assistant"):
-        st.write(response)
+        # Mostrar respuesta
+        st.session_state.chat_history.append(("assistant", response))
+        with st.chat_message("assistant"):
+            st.write(response)
 
 
 # =========================
