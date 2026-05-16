@@ -1,5 +1,14 @@
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+
 # API OPENROUTER
 OPENROUTER_API = "https://openrouter.ai/api/v1"
+
+# API KEYS
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
 # Configuracion de modelos
 EMBEDDING_MODEL = "qwen/qwen3-embedding-8b"

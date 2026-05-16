@@ -19,3 +19,6 @@ pypdf==6.10.2
 docx2txt==0.9
 
 protobuf==6.33.6
+
+tavily-python==0.7.12
+httpx==0.28.1

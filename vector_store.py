@@ -2,12 +2,10 @@ from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import Docx2txtLoader, PyPDFLoader
-from dotenv import load_dotenv
 from config import *
 import os
 import shutil
 
-load_dotenv()
 
 def load_document(document):
     # Asignar la extension del documento ingreso
