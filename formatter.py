@@ -21,3 +21,23 @@ def format_docs(docs):
         formatted.append(f"{header}\n{content}")
     
     return "\n\n".join(formatted)
+
+
+# Funcion para dar formatos a los resultados de distintas tools y generar un contexto final
+def synthesize(web_results=None, rag_results=None):
+    
+    content = []
+
+    if web_results:
+        context.append("=== WEB RESULTS ===")
+
+        for doc in web_results:
+            context.append(doc["content"])
+    
+    if rag_results:
+        context.append("\n=== RAG RESULTS ===")
+
+        for doc in rag_results:
+            content.append(doc.page_content)
+
+    return "\n".join(context)
