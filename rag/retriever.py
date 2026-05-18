@@ -2,7 +2,7 @@ from config.retriever import SEARCH_K, SEARCH_TYPE, MMR_DIVERSITY_LAMBDA
 from rag.vector_store import load_vector_store
 import os
 
-# Funcion para inicializar retriever
+# Inicializa el retriever usando la configuración del RAG
 def initialize_retriever():
     vector_store = load_vector_store()
     

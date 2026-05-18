@@ -1,7 +1,7 @@
 from langchain_openai import ChatOpenAI
 from config.settings import OPENROUTER_API
 
-# Genera LLM
+# Inicializa una instancia del LLM según el modelo configurado
 def get_llm(model: str, temperature: float = 0):
 
     return ChatOpenAI(

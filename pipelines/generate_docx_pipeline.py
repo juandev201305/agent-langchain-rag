@@ -3,7 +3,7 @@ from langchain_core.prompts import PromptTemplate
 from schemas.docx import DocumentModel
 from prompts.docx_prompt import DOCX_PROMPT
 
-# Funcion que ejecuta el generador de documentos docx
+# Genera la estructura del documento usando salida tipada del LLM
 def run_pipeline_generator_docx(context, llm):
 
     llm_docx_generator = llm.with_structured_output(

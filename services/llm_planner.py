@@ -3,7 +3,7 @@ from schemas.step import Plan
 from services.llm_factory import get_llm
 from prompts.planner_prompt import PLANNER_PROMPT
 
-# Función que genera un plan de ejecución según la intención del usuario
+# Genera un plan de ejecución según la intención del usuario
 def build_plan(query: str, llm) -> Plan:
     
     planner_llm = llm.with_structured_output(Plan)
