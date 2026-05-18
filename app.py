@@ -3,14 +3,11 @@ import tempfile
 import streamlit as st
 
 from config.models import GENERATION_MODEL
-from rag_system import initialize_retriever
-from vector_store import (
-    splitter_docs,
-    load_vector_store,
-    load_document,
-    get_indexed_files,
-    delete_document
-)
+
+from rag.retriever import initialize_retriever
+from rag.document_loader import load_document
+from rag.chunker import splitter_docs
+from rag.vector_store import load_vector_store, get_indexed_files, delete_document
 
 from services.llm_factory import get_llm
 from services.llm_planner import build_plan

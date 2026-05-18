@@ -1,5 +1,5 @@
-from config.retriever import *
-from vector_store import load_vector_store
+from config.retriever import SEARCH_K, SEARCH_TYPE, MMR_DIVERSITY_LAMBDA
+from rag.vector_store import load_vector_store
 import os
 
 # Funcion para inicializar retriever
