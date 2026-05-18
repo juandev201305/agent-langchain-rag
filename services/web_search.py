@@ -1,4 +1,4 @@
-from config import TAVILY_API_KEY
+from config.settings import TAVILY_API_KEY
 from tavily import TavilyClient
 
 client = TavilyClient(

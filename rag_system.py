@@ -1,4 +1,4 @@
-from config import *
+from config.retriever import *
 from vector_store import load_vector_store
 import os
 

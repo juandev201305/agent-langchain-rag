@@ -1,5 +1,5 @@
 from langchain_openai import ChatOpenAI
-from config import OPENROUTER_API
+from config.settings import OPENROUTER_API
 
 # Genera LLM
 def get_llm(model: str, temperature: float = 0):

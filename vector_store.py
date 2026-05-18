@@ -2,7 +2,8 @@ from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import Docx2txtLoader, PyPDFLoader
-from config import *
+from config.settings import OPENROUTER_API
+from config.models import EMBEDDING_MODEL
 import os
 import shutil
 

@@ -2,7 +2,7 @@ import os
 import tempfile
 import streamlit as st
 
-from config import GENERATION_MODEL
+from config.models import GENERATION_MODEL
 from rag_system import initialize_retriever
 from vector_store import (
     splitter_docs,
