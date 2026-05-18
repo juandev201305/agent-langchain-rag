@@ -1,7 +1,7 @@
 from langchain_core.prompts import PromptTemplate
 from schemas.step import Plan
 from services.llm_factory import get_llm
-from prompts import *
+from prompts.planner_prompt import PLANNER_PROMPT
 
 # Función que genera un plan de ejecución según la intención del usuario
 def build_plan(query: str, llm) -> Plan:
@@ -9,7 +9,7 @@ def build_plan(query: str, llm) -> Plan:
     planner_llm = llm.with_structured_output(Plan)
 
     prompt = PromptTemplate.from_template(
-        PLANNER_TOOLS
+        PLANNER_PROMPT
     )
 
     chain = (

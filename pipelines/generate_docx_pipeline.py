@@ -1,7 +1,7 @@
 from services.docx_generator import generate_docx
 from langchain_core.prompts import PromptTemplate
 from schemas.docx import DocumentModel
-from prompts import *
+from prompts.docx_prompt import DOCX_PROMPT
 
 # Funcion que ejecuta el generador de documentos docx
 def run_pipeline_generator_docx(context, llm):
