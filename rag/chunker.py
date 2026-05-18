@@ -2,7 +2,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 import os
 
-# Funcion para convertir el docx o pdf ingresado en chunks
+# Convierte Docx o PDF ingresado en chunks
 def splitter_docs(document, source_path):
     # Preparar Text Splitter
     text_splitter = RecursiveCharacterTextSplitter(

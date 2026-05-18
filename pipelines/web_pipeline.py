@@ -1,7 +1,7 @@
 from services.web_search import web_search
 
-# Funcion que ejecuta pipeline que busca informacion por internet
-def run_pipeline_web_search(query):
+# Recupera y formatea resultados de búsqueda web
+def run_pipeline_web_search(query) -> str:
     results = web_search(query=query)
 
     results_formmated = "\n\n".join(
@@ -11,4 +11,4 @@ def run_pipeline_web_search(query):
         ]
     )
 
-    return results_formmated
+    return results_formatted

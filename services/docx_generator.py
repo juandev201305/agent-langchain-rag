@@ -1,6 +1,7 @@
 from docx import Document
 from io import BytesIO
 
+# Genera un archivo DOCX en memoria a partir del modelo estructurado
 def generate_docx(doc_model: DocumentModel, path: str):
     doc = Document()
 
@@ -15,6 +16,7 @@ def generate_docx(doc_model: DocumentModel, path: str):
             doc.add_paragraph(paragraph.text)
     
     buffer = BytesIO()
+    # Guardar documento generado en memoria
     doc.save(buffer)
 
     buffer.seek(0)
