@@ -4,7 +4,7 @@ from services.web_search import web_search
 def run_pipeline_web_search(query) -> str:
     results = web_search(query=query)
 
-    results_formmated = "\n\n".join(
+    results_formatted = "\n\n".join(
         [
             f"Título: {r['title']}\nURL: {r['url']}\nContenido: {r.get('content', '')}"
             for r in results
