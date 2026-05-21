@@ -17,7 +17,7 @@ def execute_plan(
         "web_context": None,
         "rag_context": None,
         "document_model": None,
-        "document_path": None,
+        "document_id": None,
     }
 
     # Ejecuta cada step definido en el plan
@@ -54,9 +54,9 @@ def execute_plan(
             )
 
             # Exporta el documento a formato .docx
-            state["document_path"] = generate_docx(
-                doc_model=state["document_model"],
-                path="documento.docx"
+            state["document_id"] = generate_docx(
+                doc_model=state["document_model"]
             )
+            print(state["document_id"])
 
     return state
